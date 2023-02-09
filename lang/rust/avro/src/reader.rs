@@ -328,6 +328,19 @@ impl<'a, R: Read> Reader<'a, R> {
 
         self.block.read_next(read_schema)
     }
+
+    pub fn has_header(mut reader: R) ->bool{
+        let mut buf = [0u8; 4];
+        match reader
+            .read_exact(&mut buf) {
+            Ok(_) => {
+                buf == [b'O', b'b', b'j', 1u8]
+            }
+            Err(_) => {
+                false
+            }
+        }
+    }
 }
 
 impl<'a, R: Read> Iterator for Reader<'a, R> {

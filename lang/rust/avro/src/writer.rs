@@ -49,7 +49,7 @@ pub struct Writer<'a, W> {
     num_values: usize,
     #[builder(default = generate_sync_marker())]
     marker: [u8; 16],
-    #[builder(default = false, setter(skip))]
+    #[builder(default = false)]
     has_header: bool,
     #[builder(default)]
     user_metadata: HashMap<String, Value>,
